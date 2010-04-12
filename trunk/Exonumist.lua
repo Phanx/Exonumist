@@ -137,8 +137,17 @@ f:SetScript("OnEvent", function(self, event, ...)
 		end
 	elseif event == "PLAYER_LOGIN" then
 		for k, v in pairs(CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS) do
-			classColor[k] = { (v.r + 1) / 2, (v.g + 1) / 2, (v.b + 1) / 2 }
+			classColor[k] = { v.r, v.g, v.b }
 		end
+		if CUSTOM_CLASS_COLORS then
+			CUSTOM_CLASS_COLORS:RegisterCallback(function()
+				for k, v in pairs(CUSTOM_CLASS_COLORS) do
+					classColor[k] = { v.r, v.g, v.b }
+				end
+			end)
+		end
+
+		self:UnregisterEvent("PLAYER_LOGIN")
 	end
 end)
 
