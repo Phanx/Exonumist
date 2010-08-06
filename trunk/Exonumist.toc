@@ -5,7 +5,7 @@
 ## Notes: Tracks your tokens across all your characters.
 ## Author: Phanx
 ## X-Email: addons@phanx.net
-## X-Copyright: Copyright © 2010 Alyssa "Phanx" Kinley.
+## X-Copyright: Copyright © 2010 Phanx.
 ## X-License: See README for license terms.
 ## X-Website: http://wow.curseforge.com/addons/exonumist/
 ## X-WoWI-ID: 16452
