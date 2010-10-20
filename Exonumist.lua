@@ -1,12 +1,10 @@
 --[[--------------------------------------------------------------------
 	Exonumist
-	Adds information to the tooltips in the currency window showing how
-	many of each token your other characters have.
-
+	Tracks your currency tokens across multiple characters.
 	by Phanx < addons@phanx.net >
 	http://www.wowinterface.com/downloads/info13993-Exonumist.html
 	http://wow.curse.com/downloads/wow-addons/details/exonumist.aspx
-	Copyright © 2010 Alyssa "Phanx" Kinley. All rights reserved.
+	Copyright © 2010 Phanx. All rights reserved.
 	See README for license terms and additional information.
 
 	exonumist /ek-suh-NOO-mist/
@@ -26,22 +24,15 @@ local classColor = { }
 ------------------------------------------------------------------------
 
 local function UpdateData()
-	--print("UpdateData")
+	-- print("UpdateData")
 	for i = 1, GetCurrencyListSize() do
 		local tokenID
-		local name, isHeader, isExpanded, isUnused, isWatched, count, extraCurrencyType, icon, itemID = GetCurrencyListInfo(i)
-		if not isHeader then
-			if extraCurrencyType == 1 then
-				tokenID = 1
-			elseif extraCurrencyType == 2 then
-				tokenID = 2
-			elseif itemID > 0 then
-				tokenID = itemID
-			end
-			if tokenID and count > 0 then
-				charDB[tokenID] = count
+		local name, isHeader, isExpanded, isUnused, isWatched, count = GetCurrencyListInfo(i)
+		if name and not isHeader then
+			if count > 0 then
+				charDB[name] = count
 			else
-				charDB[tokenID] = nil
+				charDB[name] = nil
 			end
 		end
 	end
@@ -52,25 +43,15 @@ hooksecurefunc("BackpackTokenFrame_Update", UpdateData)
 ------------------------------------------------------------------------
 
 local function CurrencyButton_OnEnter(self)
-	--print( "CurrencyButton_OnEnter" )
-	local tokenID
-	if self:GetParent().extraCurrencyType == 1 then
-		--print( "extraCurrencyType == 1" )
-		tokenID = 1
-	elseif self:GetParent().extraCurrencyType == 2 then
-		--print( "extraCurrencyType == 2" )
-		tokenID = 2
-	else
-		local i = self:GetParent().index
-		local tokenName, _, _, _, _, count, extraCurrencyType, _, itemID = GetCurrencyListInfo(i)
-		--print( ("i = %s, itemID = %s"):format( tostring(i), tostring(itemID) ) )
-		tokenID = itemID
-	end
+	-- print( "CurrencyButton_OnEnter" )
+	local i = self:GetParent().index
+	local currency, isHeader, _, _, _, count = GetCurrencyListInfo(i)
+	if isHeader then return end
 
 	local spaced
 	for _, name in ipairs(playerList) do
-		local n = realmDB[name][tokenID]
-		--print(name, n or 0)
+		local n = realmDB[name][currency]
+		-- print(name, n or 0)
 		if n then
 			if not spaced then
 				GameTooltip:AddLine(" ")
@@ -92,14 +73,18 @@ local function CurrencyButton_OnEnter(self)
 end
 
 hooksecurefunc("TokenFrame_Update", function()
-	local buttons = TokenFrameContainer.buttons
-	for i = 1, #buttons do
-		local button = buttons[i]
+	local i = 1
+	while true do
+		local button = _G["TokenFrameContainerButton" .. i]
+		if not button then return end
+
 		if not button.hookedOnEnter then
-			--print( ("TokenFrameContainer.buttons[%d] HookScript OnEnter"):format(i) )
+			-- print("TokenFrameContainerButton" .. i ..":HookScript(\"OnEnter\")")
 			button.LinkButton:HookScript("OnEnter", CurrencyButton_OnEnter)
 			button.hookedOnEnter = true
 		end
+
+		i = i + 1
 	end
 	UpdateData()
 end)
@@ -120,6 +105,13 @@ f:SetScript("OnEvent", function(self, event, ...)
 
 		charDB = ExonumistDB[realm][player]
 		realmDB = ExonumistDB[realm]
+
+		-- remove numbered entries from old versions
+		for k, v in pairs(charDB) do
+			if type(k) == "number" then
+				charDB[k] = nil
+			end
+		end
 
 		for name in pairs(realmDB) do
 			if name ~= player then
