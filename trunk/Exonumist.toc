@@ -1,5 +1,5 @@
-## Interface: 30300
-## Version: 3.3.3.wowi:revision
+## Interface: 40000
+## Version: 4.0.1.wowi:revision
 
 ## Title: Exonumist
 ## Notes: Tracks your tokens across all your characters.
