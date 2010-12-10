@@ -4,13 +4,12 @@
 	by Phanx < addons@phanx.net >
 	http://www.wowinterface.com/downloads/info13993-Exonumist.html
 	http://wow.curse.com/downloads/wow-addons/details/exonumist.aspx
-	Copyright © 2010 Phanx. All rights reserved.
-	See README for license terms and additional information.
 
-	exonumist /ek-suh-NOO-mist/
-	–noun
-	a person who collects items, as tokens or medals, that resemble
-	money but are not intended to circulate as money.
+	Copyright © 2010 Phanx.
+	I, the copyright holder of this work, hereby release it into the public
+	domain. This applies worldwide. In case this is not legally possible:
+	I grant anyone the right to use this work for any purpose, without any
+	conditions, unless such conditions are required by law.
 ----------------------------------------------------------------------]]
 
 local realmDB, charDB
