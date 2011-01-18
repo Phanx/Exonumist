@@ -1,11 +1,14 @@
-# Exonumist
+Exonumist
+=========
 
-* by Phanx < addons@phanx.net >
+* Written by Phanx <addons@phanx.net>
+* Maintained by Akkorian <akkorian@hotmail.com>
 * http://www.wowinterface.com/downloads/info13993-Exonumist.html
 * http://wow.curse.com/downloads/wow-addons/details/exonumist.aspx
 
 
-## Description
+Description
+-----------
 
 Exonumist adds information to the tooltips in the currency window
 showing how many of each token your other characters have.
@@ -16,29 +19,33 @@ exonumist /ek-suh-NOO-mist/
 	money but are not intended to circulate as money.
 
 
-## Usage
+Usage
+-----
 
-There are no options. It "just works".
+There are no options. It “just works”.
 
 
-## Localization
+Localization
+------------
 
 Compatible with all locales. No translations are required.
 
 
-## Feedback
+Feedback
+--------
 
 For bug reports and feature requests, please use the ticket tracker on
 either download site. For general questions and comments, post a comment
 on either download site.
 
 If you need to contact me privately, you may do by private message
-on either download site, or by email at addons@phanx.net.
+on either download site, or by email at <akkorian@hotmail.com>.
 
 
-## License
+License
+-------
 
-Copyright © 2010 Phanx
+Copyright © 2010–2011 Phanx
 
 I, the copyright holder of this work, hereby release it into the public
 domain. This applies worldwide. In case this is not legally possible:
