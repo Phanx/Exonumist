@@ -93,15 +93,18 @@ end)
 
 local f = CreateFrame("Frame")
 f:RegisterEvent("ADDON_LOADED")
-f:SetScript("OnEvent", function(self, event, ...)
+f:SetScript("OnEvent", function(self, event, addon)
 	if event == "ADDON_LOADED" then
-		if ... == "Exonumist" then return end
+		if addon == "Exonumist" then return end
 
 		if not ExonumistDB then ExonumistDB = { } end
 		if not ExonumistDB[realm] then ExonumistDB[realm] = { } end
 		if not ExonumistDB[realm][player] then ExonumistDB[realm][player] = { } end
 
+		local now = time()
+
 		ExonumistDB[realm][player].class = select(2, UnitClass("player"))
+		ExonumistDB[realm][player].lastSeen = now
 
 		charDB = ExonumistDB[realm][player]
 		realmDB = ExonumistDB[realm]
@@ -113,8 +116,9 @@ f:SetScript("OnEvent", function(self, event, ...)
 			end
 		end
 
-		for name in pairs(realmDB) do
-			if name ~= player then
+		local cutoff = now - (60 * 60 * 24 * 30)
+		for name, data in pairs(realmDB) do
+			if (data.lastSeen or now) > cutoff and name ~= player then
 				table.insert(playerList, name)
 			end
 		end
