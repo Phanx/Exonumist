@@ -13,6 +13,8 @@ Description
 Exonumist adds information to the tooltips in the currency window
 showing how many of each token your other characters have.
 
+Characters that haven’t logged in within the last 30 days aren’t shown.
+
 exonumist /ek-suh-NOO-mist/
 	–noun
 	a person who collects items, as tokens or medals, that resemble
