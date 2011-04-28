@@ -138,7 +138,9 @@ f:SetScript("OnEvent", function(self, event, addon)
 		if CUSTOM_CLASS_COLORS then
 			CUSTOM_CLASS_COLORS:RegisterCallback(function()
 				for k, v in pairs(CUSTOM_CLASS_COLORS) do
-					classColor[k] = { v.r, v.g, v.b }
+					classColor[k][1] = v.r
+					classColor[k][2] = v.g
+					classColor[k][3] = v.b
 				end
 			end)
 		end
