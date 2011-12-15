@@ -1,8 +1,7 @@
-Exonumist
+﻿Exonumist
 =========
 
 * Written by Phanx <addons@phanx.net>
-* Maintained by Akkorian <akkorian@hotmail.com>
 * http://www.wowinterface.com/downloads/info13993-Exonumist.html
 * http://wow.curse.com/downloads/wow-addons/details/exonumist.aspx
 
@@ -41,7 +40,7 @@ either download site. For general questions and comments, post a comment
 on either download site.
 
 If you need to contact me privately, you may do by private message
-on either download site, or by email at <akkorian@hotmail.com>.
+on either download site, or by email at <addons@phanx.net>.
 
 
 License
