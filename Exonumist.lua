@@ -4,7 +4,7 @@
 	Written by Phanx <addons@phanx.net>
 	Maintained by Akkorian <akkorian@hotmail.com>
 	http://www.wowinterface.com/downloads/info13993-Exonumist.html
-	http://wow.curse.com/downloads/wow-addons/details/exonumist.aspx
+	http://www.curse.com/addons/wow/exonumist
 
 	Copyright © 2010–2011 Phanx.
 	I, the copyright holder of this work, hereby release it into the public

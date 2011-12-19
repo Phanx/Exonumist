@@ -3,7 +3,7 @@
 
 * Written by Phanx <addons@phanx.net>
 * http://www.wowinterface.com/downloads/info13993-Exonumist.html
-* http://wow.curse.com/downloads/wow-addons/details/exonumist.aspx
+* http://www.curse.com/addons/wow/exonumist
 
 
 Description
