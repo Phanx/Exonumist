@@ -1,16 +1,9 @@
 --[[--------------------------------------------------------------------
 	Exonumist
 	Tracks your currency tokens across multiple characters.
-	Written by Phanx <addons@phanx.net>
-	Maintained by Akkorian <akkorian@hotmail.com>
+	by Phanx <addons@phanx.net>
 	http://www.wowinterface.com/downloads/info13993-Exonumist.html
 	http://www.curse.com/addons/wow/exonumist
-
-	Copyright © 2010–2011 Phanx.
-	I, the copyright holder of this work, hereby release it into the public
-	domain. This applies worldwide. In case this is not legally possible:
-	I grant anyone the right to use this work for any purpose, without any
-	conditions, unless such conditions are required by law.
 ----------------------------------------------------------------------]]
 
 local realmDB, charDB
