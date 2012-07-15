@@ -29,15 +29,22 @@ There are no options. It “just works”.
 Localization
 ------------
 
-Compatible with all locales. No translations are required.
+Compatible with English, Deutsch, Español (EU), Español (AL), Français,
+Português, Русский, 한국어, 简体中文, and 繁體中文 game clients.
 
 
 Feedback
 --------
 
-For bug reports and feature requests, please use the ticket tracker on
-either download site. For general questions and comments, post a comment
-on either download site.
+Bugs, errors, or other problems:
+	Submit a bug report ticket on either download page.
 
-If you need to contact me privately, you may do by private message
-on either download site, or by email at <addons@phanx.net>.
+Feature requests or other suggestions:
+	Submit a feature request ticket system on either download page.
+
+General questions or comments:
+	Post a comment on the WoWInterface download page.
+
+If you need to contact me privately for a reason other than those listed
+above, you can send me a private message on either download page, or
+email me at <addons@phanx.net>.
