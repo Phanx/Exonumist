@@ -141,5 +141,3 @@ f:SetScript("OnEvent", function(self, event, addon)
 		self:UnregisterEvent("PLAYER_LOGIN")
 	end
 end)
-
-------------------------------------------------------------------------
