@@ -1,5 +1,5 @@
 ﻿## Interface: 50001
-## Version: 5.0.1.wowi:revision-beta
+## Version: 5.0.3.wowi:revision-beta
 
 ## Title: Exonumist
 ## Notes: Tracks your tokens across all your characters.
