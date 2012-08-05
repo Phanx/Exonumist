@@ -11,8 +11,8 @@ local realmDB, charDB
 local realm  = GetRealmName()
 local player = UnitName("player")
 
-local playerList = { }
-local classColor = { }
+local playerList = {}
+local classColor = {}
 
 ------------------------------------------------------------------------
 
@@ -112,10 +112,10 @@ f:SetScript("OnEvent", function(self, event, addon)
 		local cutoff = now - (60 * 60 * 24 * 30)
 		for name, data in pairs(realmDB) do
 			if (data.lastSeen or now) > cutoff and name ~= player then
-				table.insert(playerList, name)
+				tinsert(playerList, name)
 			end
 		end
-		table.sort(playerList)
+		sort(playerList)
 
 		self:UnregisterEvent("ADDON_LOADED")
 
