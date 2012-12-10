@@ -1,9 +1,7 @@
 --[[--------------------------------------------------------------------
 	Exonumist
 	A World of Warcraft user interface addon
-
 	This is free and unencumbered software released into the public domain.
-
 	See the included README and UNLICENSE files for more information!
 ----------------------------------------------------------------------]]
 
@@ -16,7 +14,7 @@ local player  = UnitName("player")
 local playerList = {}
 local classColor = {}
 
-local nameToID = {}
+local nameToID = {} -- maps localized currency names to IDs
 
 ------------------------------------------------------------------------
 
@@ -61,23 +59,24 @@ hooksecurefunc("TokenFrame_Update", UpdateData)
 
 ------------------------------------------------------------------------
 
-local function AddTooltipInfo(tooltip, currency)
+local function AddTooltipInfo(tooltip, currency, includePlayer)
 	local spaced
-	for _, player in ipairs(playerList) do
-		local n = realmDB[player][currency]
+	for i = (includePlayer and 1 or 2), #playerList do
+		local name = playerList[i]
+		local n = realmDB[name][currency]
 		if n then
 			if not spaced then
 				tooltip:AddLine(" ")
 				spaced = true
 			end
 			local r, g, b
-			local class = realmDB[player].class
+			local class = realmDB[name].class
 			if class then
 				r, g, b = unpack(classColor[class])
 			else
 				r, g, b = 0.5, 0.5, 0.5
 			end
-			tooltip:AddDoubleLine(player, n, r, g, b, r, g, b)
+			tooltip:AddDoubleLine(name, n, r, g, b, r, g, b)
 		end
 	end
 	if spaced then
@@ -86,17 +85,17 @@ local function AddTooltipInfo(tooltip, currency)
 end
 
 hooksecurefunc(GameTooltip, "SetCurrencyByID", function(tooltip, id)
-	AddTooltipInfo(tooltip, id)
+	AddTooltipInfo(tooltip, id, true)
 end)
 
 hooksecurefunc(GameTooltip, "SetCurrencyToken", function(tooltip, i)
 	local name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(i)
-	AddTooltipInfo(GameTooltip, nameToID[name])
+	AddTooltipInfo(GameTooltip, nameToID[name], not TokenFrame:IsMouseOver())
 end)
 
 hooksecurefunc(GameTooltip, "SetMerchantCostItem", function(tooltip, item, currency)
 	local icon, _, _, name = GetMerchantItemCostItem(item, currency)
-	AddTooltipInfo(tooltip, nameToID[name])
+	AddTooltipInfo(tooltip, nameToID[name], true)/du
 end)
 
 ------------------------------------------------------------------------
@@ -135,6 +134,7 @@ f:SetScript("OnEvent", function(self, event, addon)
 			end
 		end
 		sort(playerList)
+		tinsert(playerList, 1, player)
 
 		self:UnregisterEvent("ADDON_LOADED")
 
@@ -156,7 +156,6 @@ f:SetScript("OnEvent", function(self, event, addon)
 				end
 			end)
 		end
-
 		self:UnregisterEvent("PLAYER_LOGIN")
 	end
 end)
