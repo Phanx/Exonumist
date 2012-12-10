@@ -85,17 +85,28 @@ local function AddTooltipInfo(tooltip, currency, includePlayer)
 end
 
 hooksecurefunc(GameTooltip, "SetCurrencyByID", function(tooltip, id)
-	AddTooltipInfo(tooltip, id, true)
+	--print("SetCurrencyByID", id)
+	AddTooltipInfo(tooltip, id, not MerchantMoneyInset:IsMouseOver())
 end)
 
 hooksecurefunc(GameTooltip, "SetCurrencyToken", function(tooltip, i)
+	--print("SetCurrencyToken", i)
 	local name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(i)
 	AddTooltipInfo(GameTooltip, nameToID[name], not TokenFrame:IsMouseOver())
 end)
 
+hooksecurefunc(GameTooltip, "SetHyperlink", function(tooltip, link)
+	--print("SetHyperlink", link)
+	local id = strmatch(link, "currency:(%d+)")
+	if id then
+		AddTooltipInfo(tooltip, tonumber(id), true)
+	end
+end)
+
 hooksecurefunc(GameTooltip, "SetMerchantCostItem", function(tooltip, item, currency)
+	--print("SetMerchantCostItem", item, currency)
 	local icon, _, _, name = GetMerchantItemCostItem(item, currency)
-	AddTooltipInfo(tooltip, nameToID[name], true)/du
+	AddTooltipInfo(tooltip, nameToID[name], true)
 end)
 
 ------------------------------------------------------------------------
