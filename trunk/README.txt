@@ -1,50 +1,45 @@
-﻿Exonumist
-=========
-
+﻿
+Exonumist
+=============
+* A World of Warcraft user interface addon
 * Written by Phanx <addons@phanx.net>
 * http://www.wowinterface.com/downloads/info13993-Exonumist.html
 * http://www.curse.com/addons/wow/exonumist
 
 
 Description
------------
+---------------
 
 Exonumist adds information to the tooltips in the currency window
 showing how many of each token your other characters have.
 
 Characters that haven’t logged in within the last 30 days aren’t shown.
 
-exonumist /ek-suh-NOO-mist/
-	–noun
-	a person who collects items, as tokens or medals, that resemble
-	money but are not intended to circulate as money.
+>  exonumist /ek-suh-NOO-mist/
+>  –noun
+>  a person who collects items, as tokens or medals, that resemble
+>  money but are not intended to circulate as money.
 
 
 Usage
------
+---------
 
 There are no options. It “just works”.
 
 
 Localization
-------------
+----------------
 
-Compatible with English, Deutsch, Español (EU), Español (AL), Français,
+Compatible with English, Deutsch, Español, Français, Italiano,
 Português, Русский, 한국어, 简体中文, and 繁體中文 game clients.
 
 
 Feedback
---------
+------------
 
-Bugs, errors, or other problems:
-	Submit a bug report ticket on either download page.
+Post a comment on WoWInterface.
 
-Feature requests or other suggestions:
-	Submit a feature request ticket system on either download page.
-
-General questions or comments:
-	Post a comment on the WoWInterface download page.
-
-If you need to contact me privately for a reason other than those listed
-above, you can send me a private message on either download page, or
-email me at <addons@phanx.net>.
+To contact me privately for some other reason, email <addons@phanx.net>
+or send a PM to Phanx on either download page. Please *do not* use email
+or PMs to ask for help, report bugs, or suggest features; such messages
+will be ignored. Post a public comment instead!
