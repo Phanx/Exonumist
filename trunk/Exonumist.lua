@@ -7,10 +7,6 @@
 
 local realmDB, charDB
 
-local realm   = GetRealmName()
-local faction = UnitFactionGroup("player")
-local player  = UnitName("player")
-
 local playerList = {}
 local classColor = {}
 
@@ -54,9 +50,6 @@ local function UpdateData()
 	wipe(collapsed)
 end
 
-hooksecurefunc("BackpackTokenFrame_Update", UpdateData)
-hooksecurefunc("TokenFrame_Update", UpdateData)
-
 ------------------------------------------------------------------------
 
 local function AddTooltipInfo(tooltip, currency, includePlayer)
@@ -84,31 +77,6 @@ local function AddTooltipInfo(tooltip, currency, includePlayer)
 	end
 end
 
-hooksecurefunc(GameTooltip, "SetCurrencyByID", function(tooltip, id)
-	--print("SetCurrencyByID", id)
-	AddTooltipInfo(tooltip, id, not MerchantMoneyInset:IsMouseOver())
-end)
-
-hooksecurefunc(GameTooltip, "SetCurrencyToken", function(tooltip, i)
-	--print("SetCurrencyToken", i)
-	local name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(i)
-	AddTooltipInfo(GameTooltip, nameToID[name], not TokenFrame:IsMouseOver())
-end)
-
-hooksecurefunc(GameTooltip, "SetHyperlink", function(tooltip, link)
-	--print("SetHyperlink", link)
-	local id = strmatch(link, "currency:(%d+)")
-	if id then
-		AddTooltipInfo(tooltip, tonumber(id), true)
-	end
-end)
-
-hooksecurefunc(GameTooltip, "SetMerchantCostItem", function(tooltip, item, currency)
-	--print("SetMerchantCostItem", item, currency)
-	local icon, _, _, name = GetMerchantItemCostItem(item, currency)
-	AddTooltipInfo(tooltip, nameToID[name], true)
-end)
-
 ------------------------------------------------------------------------
 
 local f = CreateFrame("Frame")
@@ -116,6 +84,10 @@ f:RegisterEvent("ADDON_LOADED")
 f:SetScript("OnEvent", function(self, event, addon)
 	if event == "ADDON_LOADED" then
 		if addon ~= "Exonumist" then return end
+
+		local realm   = GetRealmName()
+		local faction = UnitFactionGroup("player")
+		local player  = UnitName("player")
 
 		if not ExonumistDB then ExonumistDB = { } end
 		if not ExonumistDB[realm] then ExonumistDB[realm] = { } end
@@ -128,11 +100,12 @@ f:SetScript("OnEvent", function(self, event, addon)
 			end
 		end
 
-		local now = time()
-
 		realmDB = ExonumistDB[realm][faction]
+		if not realmDB then return end -- probably low level Pandaren
+
 		charDB = realmDB[player]
 
+		local now = time()
 		charDB.class = select(2, UnitClass("player"))
 		charDB.lastSeen = now
 
@@ -167,6 +140,35 @@ f:SetScript("OnEvent", function(self, event, addon)
 				end
 			end)
 		end
+
 		self:UnregisterEvent("PLAYER_LOGIN")
+
+		hooksecurefunc("BackpackTokenFrame_Update", UpdateData)
+		hooksecurefunc("TokenFrame_Update", UpdateData)
+
+		hooksecurefunc(GameTooltip, "SetCurrencyByID", function(tooltip, id)
+			--print("SetCurrencyByID", id)
+			AddTooltipInfo(tooltip, id, not MerchantMoneyInset:IsMouseOver())
+		end)
+
+		hooksecurefunc(GameTooltip, "SetCurrencyToken", function(tooltip, i)
+			--print("SetCurrencyToken", i)
+			local name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(i)
+			AddTooltipInfo(GameTooltip, nameToID[name], not TokenFrame:IsMouseOver())
+		end)
+
+		hooksecurefunc(GameTooltip, "SetHyperlink", function(tooltip, link)
+			--print("SetHyperlink", link)
+			local id = strmatch(link, "currency:(%d+)")
+			if id then
+				AddTooltipInfo(tooltip, tonumber(id), true)
+			end
+		end)
+
+		hooksecurefunc(GameTooltip, "SetMerchantCostItem", function(tooltip, item, currency)
+			--print("SetMerchantCostItem", item, currency)
+			local icon, _, _, name = GetMerchantItemCostItem(item, currency)
+			AddTooltipInfo(tooltip, nameToID[name], true)
+		end)
 	end
 end)
