@@ -165,6 +165,14 @@ f:SetScript("OnEvent", function(self, event, addon)
 			end
 		end)
 
+		hooksecurefunc(ItemRefTooltip, "SetHyperlink", function(tooltip, link)
+			--print("SetHyperlink", link)
+			local id = strmatch(link, "currency:(%d+)")
+			if id then
+				AddTooltipInfo(tooltip, tonumber(id), true)
+			end
+		end)
+
 		hooksecurefunc(GameTooltip, "SetMerchantCostItem", function(tooltip, item, currency)
 			--print("SetMerchantCostItem", item, currency)
 			local icon, _, _, name = GetMerchantItemCostItem(item, currency)
