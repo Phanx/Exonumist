@@ -14,11 +14,10 @@ local nameToID = {} -- maps localized currency names to IDs
 
 ------------------------------------------------------------------------
 
-local collapsed = {}
+local collapsed, scanning = {}
 local function UpdateData()
-	if TokenFrame:IsVisible() then
-		return
-	end
+	if scanning then return end
+	scanning = true
 	local i, limit = 1, GetCurrencyListSize()
 	while i <= limit do
 		local name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(i)
@@ -48,11 +47,13 @@ local function UpdateData()
 		i = i - 1
 	end
 	wipe(collapsed)
+	scanning = nil
 end
 
 ------------------------------------------------------------------------
 
 local function AddTooltipInfo(tooltip, currency, includePlayer)
+	--print("AddTooltipInfo", currency, includePlayer)
 	local spaced
 	for i = (includePlayer and 1 or 2), #playerList do
 		local name = playerList[i]
@@ -94,7 +95,7 @@ f:SetScript("OnEvent", function(self, event, addon)
 		if not ExonumistDB[realm][faction] then ExonumistDB[realm][faction] = { } end
 		if not ExonumistDB[realm][faction][player] then ExonumistDB[realm][faction][player] = { } end
 
-		for k,v in pairs(ExonumistDB[realm]) do
+		for k, v in pairs(ExonumistDB[realm]) do
 			if k ~= "Alliance" and k ~= "Horde" then
 				ExonumistDB[realm][k] = nil
 			end
@@ -145,6 +146,7 @@ f:SetScript("OnEvent", function(self, event, addon)
 
 		hooksecurefunc("BackpackTokenFrame_Update", UpdateData)
 		hooksecurefunc("TokenFrame_Update", UpdateData)
+		UpdateData()
 
 		hooksecurefunc(GameTooltip, "SetCurrencyByID", function(tooltip, id)
 			--print("SetCurrencyByID", id)
