@@ -17,6 +17,7 @@ local nameToID = {} -- maps localized currency names to IDs
 local collapsed, scanning = {}
 local function UpdateData()
 	if scanning then return end
+	--print("UpdateData")
 	scanning = true
 	local i, limit = 1, GetCurrencyListSize()
 	while i <= limit do
@@ -110,7 +111,7 @@ f:SetScript("OnEvent", function(self, event, addon)
 		charDB.class = select(2, UnitClass("player"))
 		charDB.lastSeen = now
 
-		local cutoff = now - (60 * 60 * 24 * 30)
+		local cutoff = now - (60 * 60 * 24 * 30) -- 30 days
 		for name, data in pairs(realmDB) do
 			if data.lastSeen and data.lastSeen < cutoff then
 				realmDB[name] = nil
