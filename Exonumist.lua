@@ -32,6 +32,7 @@ local function UpdateData()
 			local link = GetCurrencyListLink(i)
 			local id = tonumber(strmatch(link, "currency:(%d+)"))
 			nameToID[name] = id
+			--print(name, "=>", id)
 			if count > 0 then
 				charDB[id] = count
 			else
@@ -87,20 +88,16 @@ f:SetScript("OnEvent", function(self, event, addon)
 	if event == "ADDON_LOADED" then
 		if addon ~= "Exonumist" then return end
 
-		local realm   = GetRealmName()
 		local faction = UnitFactionGroup("player")
+		if faction ~= "Alliance" and faction ~= "Horde" then return end
+
+		local realm   = GetRealmName()
 		local player  = UnitName("player")
 
-		if not ExonumistDB then ExonumistDB = { } end
-		if not ExonumistDB[realm] then ExonumistDB[realm] = { } end
-		if not ExonumistDB[realm][faction] then ExonumistDB[realm][faction] = { } end
-		if not ExonumistDB[realm][faction][player] then ExonumistDB[realm][faction][player] = { } end
-
-		for k, v in pairs(ExonumistDB[realm]) do
-			if k ~= "Alliance" and k ~= "Horde" then
-				ExonumistDB[realm][k] = nil
-			end
-		end
+		ExonumistDB = ExonumistDB or { }
+		ExonumistDB[realm] = ExonumistDB[realm] or { }
+		ExonumistDB[realm][faction] = ExonumistDB[realm][faction] or { }
+		ExonumistDB[realm][faction][player] = ExonumistDB[realm][faction][player] or { }
 
 		realmDB = ExonumistDB[realm][faction]
 		if not realmDB then return end -- probably low level Pandaren
@@ -145,6 +142,8 @@ f:SetScript("OnEvent", function(self, event, addon)
 
 		self:UnregisterEvent("PLAYER_LOGIN")
 
+		self:RegisterEvent("PLAYER_LOGOUT")
+
 		hooksecurefunc("BackpackTokenFrame_Update", UpdateData)
 		hooksecurefunc("TokenFrame_Update", UpdateData)
 		UpdateData()
@@ -157,7 +156,22 @@ f:SetScript("OnEvent", function(self, event, addon)
 		hooksecurefunc(GameTooltip, "SetCurrencyToken", function(tooltip, i)
 			--print("SetCurrencyToken", i)
 			local name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(i)
-			AddTooltipInfo(GameTooltip, nameToID[name], not TokenFrame:IsMouseOver())
+			AddTooltipInfo(tooltip, nameToID[name], not TokenFrame:IsMouseOver())
+		end)
+
+		hooksecurefunc(GameTooltip, "SetQuestCurrency", function(tooltip, type, id)
+			local name = GetQuestCurrencyInfo(type, id)
+			--print("SetQuestCurrency", type, id, name)
+			if name then
+				AddTooltipInfo(tooltip, nameToID[name], true)
+			end
+		end)
+		hooksecurefunc(GameTooltip, "SetQuestLogCurrency", function(tooltip, type, id)
+			--print("SetQuestLogCurrency", type, id)
+			local name = GetQuestLogRewardCurrencyInfo(id)
+			if name then
+				AddTooltipInfo(tooltip, nameToID[name], true)
+			end
 		end)
 
 		hooksecurefunc(GameTooltip, "SetHyperlink", function(tooltip, link)
@@ -167,7 +181,6 @@ f:SetScript("OnEvent", function(self, event, addon)
 				AddTooltipInfo(tooltip, tonumber(id), true)
 			end
 		end)
-
 		hooksecurefunc(ItemRefTooltip, "SetHyperlink", function(tooltip, link)
 			--print("SetHyperlink", link)
 			local id = strmatch(link, "currency:(%d+)")
@@ -181,5 +194,7 @@ f:SetScript("OnEvent", function(self, event, addon)
 			local icon, _, _, name = GetMerchantItemCostItem(item, currency)
 			AddTooltipInfo(tooltip, nameToID[name], true)
 		end)
+	elseif event == "PLAYER_LOGOUT" then
+		UpdateData()
 	end
 end)
