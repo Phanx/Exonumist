@@ -55,6 +55,7 @@ end
 ------------------------------------------------------------------------
 
 local function AddTooltipInfo(tooltip, currency, includePlayer)
+	if not currency then return end
 	--print("AddTooltipInfo", currency, includePlayer)
 	local spaced
 	for i = (includePlayer and 1 or 2), #playerList do
@@ -169,6 +170,19 @@ f:SetScript("OnEvent", function(self, event, addon)
 		hooksecurefunc(GameTooltip, "SetQuestLogCurrency", function(tooltip, type, id)
 			--print("SetQuestLogCurrency", type, id)
 			local name = GetQuestLogRewardCurrencyInfo(id)
+			if name then
+				AddTooltipInfo(tooltip, nameToID[name], true)
+			end
+		end)
+
+		hooksecurefunc(GameTooltip, "SetLFGDungeonReward", function(tooltip, dungeonID, rewardIndex)
+			local name = GetLFGDungeonRewardInfo(dungeonID, rewardIndex)
+			if name then
+				AddTooltipInfo(tooltip, nameToID[name], true)
+			end
+		end)
+		hooksecurefunc(GameTooltip, "SetLFGDungeonReward", function(tooltip, dungeonID, shortageIndex, rewardIndex)
+			local name = GetLFGDungeonShortageRewardInfo(dungeonID, shortageIndex, rewardIndex)
 			if name then
 				AddTooltipInfo(tooltip, nameToID[name], true)
 			end
