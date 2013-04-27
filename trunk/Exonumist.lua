@@ -160,34 +160,6 @@ f:SetScript("OnEvent", function(self, event, addon)
 			AddTooltipInfo(tooltip, nameToID[name], not TokenFrame:IsMouseOver())
 		end)
 
-		hooksecurefunc(GameTooltip, "SetQuestCurrency", function(tooltip, type, id)
-			local name = GetQuestCurrencyInfo(type, id)
-			--print("SetQuestCurrency", type, id, name)
-			if name then
-				AddTooltipInfo(tooltip, nameToID[name], true)
-			end
-		end)
-		hooksecurefunc(GameTooltip, "SetQuestLogCurrency", function(tooltip, type, id)
-			--print("SetQuestLogCurrency", type, id)
-			local name = GetQuestLogRewardCurrencyInfo(id)
-			if name then
-				AddTooltipInfo(tooltip, nameToID[name], true)
-			end
-		end)
-
-		hooksecurefunc(GameTooltip, "SetLFGDungeonReward", function(tooltip, dungeonID, rewardIndex)
-			local name = GetLFGDungeonRewardInfo(dungeonID, rewardIndex)
-			if name then
-				AddTooltipInfo(tooltip, nameToID[name], true)
-			end
-		end)
-		hooksecurefunc(GameTooltip, "SetLFGDungeonReward", function(tooltip, dungeonID, shortageIndex, rewardIndex)
-			local name = GetLFGDungeonShortageRewardInfo(dungeonID, shortageIndex, rewardIndex)
-			if name then
-				AddTooltipInfo(tooltip, nameToID[name], true)
-			end
-		end)
-
 		hooksecurefunc(GameTooltip, "SetHyperlink", function(tooltip, link)
 			--print("SetHyperlink", link)
 			local id = strmatch(link, "currency:(%d+)")
@@ -195,6 +167,7 @@ f:SetScript("OnEvent", function(self, event, addon)
 				AddTooltipInfo(tooltip, tonumber(id), true)
 			end
 		end)
+
 		hooksecurefunc(ItemRefTooltip, "SetHyperlink", function(tooltip, link)
 			--print("SetHyperlink", link)
 			local id = strmatch(link, "currency:(%d+)")
@@ -203,10 +176,54 @@ f:SetScript("OnEvent", function(self, event, addon)
 			end
 		end)
 
+		----------------------
+		--	Merchant costs
+		----------------------
+
 		hooksecurefunc(GameTooltip, "SetMerchantCostItem", function(tooltip, item, currency)
 			--print("SetMerchantCostItem", item, currency)
 			local icon, _, _, name = GetMerchantItemCostItem(item, currency)
 			AddTooltipInfo(tooltip, nameToID[name], true)
+		end)
+
+		------------------------------
+		--	Dungeon finder rewards
+		------------------------------
+
+		hooksecurefunc(GameTooltip, "SetLFGDungeonReward", function(tooltip, dungeonID, rewardIndex)
+			--print("SetLFGDungeonReward", dungeonID, rewardIndex)
+			local name = GetLFGDungeonRewardInfo(dungeonID, rewardIndex)
+			if name then
+				AddTooltipInfo(tooltip, nameToID[name], true)
+			end
+		end)
+
+		hooksecurefunc(GameTooltip, "SetLFGDungeonShortageReward", function(tooltip, dungeonID, shortageIndex, rewardIndex)
+			--print("SetLFGDungeonShortageReward", dungeonID, shortageIndex, rewardIndex)
+			local name = GetLFGDungeonShortageRewardInfo(dungeonID, shortageIndex, rewardIndex)
+			if name then
+				AddTooltipInfo(tooltip, nameToID[name], true)
+			end
+		end)
+
+		---------------------
+		--	Quest rewards
+		---------------------
+
+		hooksecurefunc(GameTooltip, "SetQuestCurrency", function(tooltip, type, id)
+			local name = GetQuestCurrencyInfo(type, id)
+			--print("SetQuestCurrency", type, id, name)
+			if name then
+				AddTooltipInfo(tooltip, nameToID[name], true)
+			end
+		end)
+
+		hooksecurefunc(GameTooltip, "SetQuestLogCurrency", function(tooltip, type, id)
+			--print("SetQuestLogCurrency", type, id)
+			local name = GetQuestLogRewardCurrencyInfo(id)
+			if name then
+				AddTooltipInfo(tooltip, nameToID[name], true)
+			end
 		end)
 	elseif event == "PLAYER_LOGOUT" then
 		UpdateData()
