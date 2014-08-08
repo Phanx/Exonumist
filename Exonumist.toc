@@ -1,11 +1,12 @@
 ﻿## Interface: 50400
-## Version: 5.4.1.wowi:revision
+## Version: 5.4.8.wowi:revision
 
 ## Title: Exonumist
 ## Notes: Tracks your tokens across all your characters.
 ## Author: Phanx
 ## X-Email: addons@phanx.net
-## X-License: Public Domain
+## X-Copyright: Copyright (c) 2010-2014 Phanx
+## X-License: Do not redistribute. See the accompanying LICENSE file for details.
 ## X-CompatibleLocales: enUS, deDE, esES, esMX, frFR, itIT, ptBR, ruRU, koKR, zhCN, zhTW
 ## X-Website: http://www.wowinterface.com/downloads/info13993-Exonumist.html
 ## X-Curse-Project-ID: exonumist

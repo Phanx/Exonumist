@@ -1,8 +1,10 @@
 --[[--------------------------------------------------------------------
 	Exonumist
 	A World of Warcraft user interface addon
-	This is free and unencumbered software released into the public domain.
-	See the included README and UNLICENSE files for more information!
+	Copyright (c) 2010-2014 Phanx <addons@phanx.net>
+	Do not redistribute. See the accompanying LICENSE file for details.
+	http://www.wowinterface.com/downloads/info16452-Exonumist.html
+	http://www.curse.com/addons/wow/exonumist
 ----------------------------------------------------------------------]]
 
 local realmDB, charDB
