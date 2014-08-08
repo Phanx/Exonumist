@@ -42,24 +42,20 @@ In case you were curious about the name:
 Feedback
 -----------
 
-**Post a comment on WoWInterface.** If you are reporting a bug, please
-include detailed instructions I can follow to reproduce the bug myself,
-whether or not it still happens when all other addons are disabled, and
-the exact text of the first related error message (if any) from BugSack.
+Post a ticket on either download site, or a comment on WoWInterface.
 
-Please note that I consider this addon to be complete, and will probably
-not add any new features. If you notice any currency tooltips missing
-information, please post a comment explaining what you clicked on or
-moused over to get the tooltip, and which type of currency is involved.
+If you are reporting a bug, please include directions I can follow to
+reproduce the bug, whether it still happens when all other addons are
+disabled, and the exact text of the related error message (if any) from 
+[BugSack](http://www.wowinterface.com/downloads/info5995-BugSack.html).
 
-If you need to contact me privately, you can send a private message to
-Phanx on either download site, or email me at <addons@phanx.net>.
-**Please note** that I do not provide private addon support or tutoring
-of any kind; post a comment or forum thread instead!
+If you need to contact me privately, you can send me a private message
+on either download site, or email me at <addons@phanx.net>.
 
 
 License
 ----------
 
-Copyright (c) 2010-2014 Phanx. All rights reserved. See the accompanying
-LICENSE file for additional information.
+Copyright (c) 2010-2014 Phanx <addons@phanx.net>. All rights reserved.
+See the accompanying LICENSE file for information about the conditions
+under which redistribution and modification may be allowed.
