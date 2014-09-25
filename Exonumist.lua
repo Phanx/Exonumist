@@ -1,8 +1,8 @@
 --[[--------------------------------------------------------------------
 	Exonumist
 	A World of Warcraft user interface addon
-	Copyright (c) 2010-2014 Phanx <addons@phanx.net>
-	Do not redistribute. See the accompanying LICENSE file for details.
+	Copyright (c) 2010-2014 Phanx <addons@phanx.net>. All rights reserved.
+	See the accompanying README and LICENSE files for more information.
 	http://www.wowinterface.com/downloads/info16452-Exonumist.html
 	http://www.curse.com/addons/wow/exonumist
 ----------------------------------------------------------------------]]
