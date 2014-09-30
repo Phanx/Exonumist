@@ -2,7 +2,11 @@
 ## Version: 5.4.8.wowi:revision
 
 ## Title: Exonumist
-## Notes: Tracks your tokens across all your characters.
+## Notes: Shows currency counts for all your characters in currency tooltips.
+## Notes-deDE: Zeigt im Abzeichentooltips die Abzeichenanzahlen von jeden Euer Charaktere.
+## Notes-esES: Muestra las cuentas de monedas de todos tus personajes en las descripciones de monedas.
+## Notes-esMX: Muestra las cuentas de monedas de todos tus personajes en las descripciones de monedas.
+
 ## Author: Phanx
 ## X-Email: addons@phanx.net
 ## X-Copyright: Copyright (c) 2010-2014 Phanx. All rights reserved.
