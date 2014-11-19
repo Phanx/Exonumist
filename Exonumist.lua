@@ -1,10 +1,10 @@
 --[[--------------------------------------------------------------------
 	Exonumist
-	A World of Warcraft user interface addon
+	Shows currency counts for all your characters in currency tooltips.
 	Copyright (c) 2010-2014 Phanx <addons@phanx.net>. All rights reserved.
-	See the accompanying README and LICENSE files for more information.
 	http://www.wowinterface.com/downloads/info16452-Exonumist.html
 	http://www.curse.com/addons/wow/exonumist
+	https://github.com/Phanx/Exonumist
 ----------------------------------------------------------------------]]
 
 local realmDB, charDB

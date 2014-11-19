@@ -1,5 +1,5 @@
 ﻿## Interface: 60000
-## Version: 6.0.2.wowi:revision
+## Version: @project-version@
 
 ## Title: Exonumist
 ## Notes: Shows currency counts for all your characters in currency tooltips.
@@ -10,11 +10,7 @@
 ## Author: Phanx
 ## X-Email: addons@phanx.net
 ## X-Copyright: Copyright (c) 2010-2014 Phanx. All rights reserved.
-## X-License: See the accompanying LICENSE file for details.
-## X-CompatibleLocales: enUS, deDE, esES, esMX, frFR, itIT, ptBR, ruRU, koKR, zhCN, zhTW
-## X-Website: http://www.wowinterface.com/downloads/info13993-Exonumist.html
-## X-Curse-Project-ID: exonumist
-## X-WoWI-ID: 16452
+## X-Website: https://github.com/Phanx/Exonumist
 
 ## LoadsWith: Blizzard_TokenUI
 ## SavedVariables: ExonumistDB
