@@ -13,6 +13,7 @@ local playerList = {}
 local classColor = {}
 
 local nameToID = {} -- maps localized currency names to IDs
+local names, icons = {}, {} -- cached data for LDB tooltip
 
 local function debug(str, ...)
 	local f = DEBUG_CHAT_FRAME or ChatFrame3
@@ -26,6 +27,7 @@ local function UpdateData()
 	if scanning then return end
 	--debug("UpdateData")
 	scanning = true
+	wipe(names)
 	local i, limit = 1, GetCurrencyListSize()
 	while i <= limit do
 		local name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo(i)
@@ -42,6 +44,8 @@ local function UpdateData()
 			--debug(name, "=>", id)
 			if count > 0 then
 				charDB[id] = count
+				tinsert(names, name)
+				icons[name] = icon
 			else
 				charDB[id] = nil
 			end
@@ -56,6 +60,7 @@ local function UpdateData()
 		i = i - 1
 	end
 	wipe(collapsed)
+	sort(names)
 	scanning = nil
 end
 
@@ -261,5 +266,63 @@ f:SetScript("OnEvent", function(self, event, addon)
 		end
 	elseif event == "PLAYER_LOGOUT" then
 		UpdateData()
+	end
+end)
+
+------------------------------------------------------------------------
+
+local LDB = LibStub and LibStub("LibDataBroker-1.1", true)
+if not LDB then return end
+
+local HINT = "Click to open the currency panel."
+if GetLocale() == "deDE" then
+	HINT = "Klick, um das Abzeichenfenster anzuzeigen."
+elseif GetLocale():match("^es") then
+	HINT = "Haz clic para mostrar el marco de monedas."
+elseif GetLocale() == "frFR" then
+	HINT = "Cliquez pour afficher le cadre des monnaies."
+elseif GetLocale() == "itIT" then
+	HINT = "Clicca per mostrare il panello della valuta."
+elseif GetLocale() == "ptBR" then
+	HINT = "Clique para mostrar a janela de moeda."
+elseif GetLocale() == "ruRU" then
+	HINT = "Щелкните, чтобы открыть окно валюты."
+elseif GetLocale() == "koKR" then
+	HINT = "클릭하여 열기 화폐창" -- needs check
+elseif GetLocale() == "zhCN" then
+	HINT = "点击打开/关闭货币页面。" -- needs check
+elseif GetLocale() == "zhTW" then
+	HINT = "點擊打開/關閉貨幣頁面。" -- needs check
+end
+
+LDB = LDB:NewDataObject("Exonumist", {
+	type = "data source",
+	text = "Exonumist",
+	OnTooltipShow = function(tooltip)
+		tooltip:SetText(CURRENCY)
+		for i = 1, #names do
+			local name = names[i]
+			local count = charDB[nameToID[name]]
+			local icon = icons[name]
+			tooltip:AddDoubleLine(name, count .. " |T" .. icon .. ":0|t", 1, 1, 1, 1, 1, 1)
+		end
+		tooltip:AddLine(HINT)
+		tooltip:Show()
+	end,
+	OnClick = function()
+		ToggleCharacter("TokenFrame")
+	end,
+})
+
+hooksecurefunc("BackpackTokenFrame_Update", function()
+	if BackpackTokenFrame.shouldShow then
+		local text = ""
+		for i = 1, GetNumWatchedTokens() do
+			local name, count, icon = GetBackpackCurrencyInfo(i)
+			text = text .. " |T" .. icon .. ":16|t " .. count
+		end
+		LDB.text = strtrim(text)
+	else
+		LDB.text = "Exonumist"
 	end
 end)
