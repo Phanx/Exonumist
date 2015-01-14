@@ -1,7 +1,7 @@
 --[[--------------------------------------------------------------------
 	Exonumist
 	Shows currency counts for all your characters in currency tooltips.
-	Copyright (c) 2010-2014 Phanx <addons@phanx.net>. All rights reserved.
+	Copyright (c) 2010-2015 Phanx <addons@phanx.net>. All rights reserved.
 	http://www.wowinterface.com/downloads/info16452-Exonumist.html
 	http://www.curse.com/addons/wow/exonumist
 	https://github.com/Phanx/Exonumist
@@ -304,7 +304,7 @@ LDB = LDB:NewDataObject("Exonumist", {
 			local name = names[i]
 			local count = charDB[nameToID[name]]
 			local icon = icons[name]
-			tooltip:AddDoubleLine(name, count .. " |T" .. icon .. ":0|t", 1, 1, 1, 1, 1, 1)
+			tooltip:AddDoubleLine(name, count .. " |T" .. icon .. ":14:14:0:0:64:64:4:60:4:60|t", 1, 1, 1, 1, 1, 1)
 		end
 		tooltip:AddLine(HINT)
 		tooltip:Show()
@@ -319,7 +319,7 @@ hooksecurefunc("BackpackTokenFrame_Update", function()
 		local text = ""
 		for i = 1, GetNumWatchedTokens() do
 			local name, count, icon = GetBackpackCurrencyInfo(i)
-			text = text .. " |T" .. icon .. ":16|t " .. count
+			text = text .. " |T" .. icon .. ":16:16:0:0:64:64:5:59:5:59|t " .. count
 		end
 		LDB.text = strtrim(text)
 	else
