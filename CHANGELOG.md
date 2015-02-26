@@ -1,3 +1,8 @@
+### Version 6.1.0.16
+
+* Updated for WoW 6.1
+* Added an optional DataBroker plugin: text shows your "show on backpack" currencies, tooltip shows all your currencies, click to open the currency window
+
 ### Version 6.0.2.45
 
 * Updated for WoW 6.0
