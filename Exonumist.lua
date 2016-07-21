@@ -298,6 +298,7 @@ end
 LDB = LDB:NewDataObject("Exonumist", {
 	type = "data source",
 	text = "Exonumist",
+	icon = "Interface\\ICONS\\INV_Misc_Coin_17",
 	OnTooltipShow = function(tooltip)
 		tooltip:SetText(CURRENCY)
 		for i = 1, #names do
