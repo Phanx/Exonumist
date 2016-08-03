@@ -3,7 +3,7 @@
 	Shows currency counts for all your characters in currency tooltips.
 	Copyright (c) 2010-2015 Phanx <addons@phanx.net>. All rights reserved.
 	http://www.wowinterface.com/downloads/info16452-Exonumist.html
-	http://www.curse.com/addons/wow/exonumist
+	https://mods.curse.com/addons/wow/exonumist
 	https://github.com/Phanx/Exonumist
 ----------------------------------------------------------------------]]
 
