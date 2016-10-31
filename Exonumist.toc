@@ -11,6 +11,7 @@
 ## X-Email: addons@phanx.net
 ## X-Copyright: Copyright (c) 2010-2016 Phanx. All rights reserved.
 ## X-Website: https://github.com/Phanx/Exonumist
+## X-WoWI-ID: 16452
 
 ## LoadsWith: Blizzard_TokenUI
 ## SavedVariables: ExonumistDB

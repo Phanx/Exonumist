@@ -6,4 +6,4 @@ Exonumist
 **ES** — Muestra las cuentas de monedas de todos tus personajes en las descripciones de monedas.
 
 * [Download on Curse](https://mods.curse.com/addons/wow/exonumist)
-* [Download on WoWInterface](http://www.wowinterface.com/downloads/info13993-Exonumist.html)
+* [Download on WoWInterface](https://www.wowinterface.com/downloads/info13993-Exonumist.html)

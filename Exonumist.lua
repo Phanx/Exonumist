@@ -1,8 +1,8 @@
 --[[--------------------------------------------------------------------
 	Exonumist
 	Shows currency counts for all your characters in currency tooltips.
-	Copyright (c) 2010-2015 Phanx <addons@phanx.net>. All rights reserved.
-	http://www.wowinterface.com/downloads/info16452-Exonumist.html
+	Copyright (c) 2010-2016 Phanx <addons@phanx.net>. All rights reserved.
+	https://www.wowinterface.com/downloads/info16452-Exonumist.html
 	https://mods.curse.com/addons/wow/exonumist
 	https://github.com/Phanx/Exonumist
 ----------------------------------------------------------------------]]
