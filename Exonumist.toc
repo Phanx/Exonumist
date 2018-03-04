@@ -1,4 +1,4 @@
-﻿## Interface: 70100
+## Interface: 70300
 ## Version: @project-version@
 
 ## Title: Exonumist
@@ -9,8 +9,9 @@
 
 ## Author: Phanx
 ## X-Email: addons@phanx.net
-## X-Copyright: Copyright (c) 2010-2016 Phanx. All rights reserved.
-## X-Website: https://github.com/Phanx/Exonumist
+## X-License: All rights reserved
+## X-Website: https://github.com/phanx-wow/Exonumist
+## X-Curse-Project-ID: 22800
 ## X-WoWI-ID: 16452
 
 ## LoadsWith: Blizzard_TokenUI
